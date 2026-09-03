@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Josh Chen",
+  name: "CHEN JIAHUI",
   title: "DevOps, SRE & Backend Engineer",
   email: "josh@joshchen.dev",
   url: "https://joshchen.dev",
