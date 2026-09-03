@@ -29,7 +29,7 @@ export default function Home() {
 
     <section id="work" className="section shell">
       <SectionHeading number="Work" title="Selected projects" intro="A few places where infrastructure decisions meet product outcomes." />
-      <div className="project-list">{projects.map((project, index) => <Reveal key={project.title} delay={index * .04}><a href={project.href} target="_blank" rel="noreferrer" className="project-card group"><div className="project-index">0{index + 1}</div><div className="project-body"><h3>{project.title}</h3><p>{project.description}</p><ul aria-label="Technologies">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div><span className="project-cta">View repository <ArrowUpRight className="size-4" /></span></a></Reveal>)}</div>
+      <div className="project-list">{projects.map((project, index) => <Reveal key={project.title} delay={index * .08}><a href={project.href} target="_blank" rel="noreferrer" className="project-card group"><div className="project-index">0{index + 1}</div><div className="project-body"><h3>{project.title}</h3><p>{project.description}</p><ul aria-label="Technologies">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div><span className="project-cta">View repository <ArrowUpRight className="size-4" /></span></a></Reveal>)}</div>
     </section>
 
     <section id="experience" className="section section-tint">
