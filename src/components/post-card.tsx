@@ -1,0 +1,4 @@
+import Link from "next/link";
+import { ArrowUpRight } from "@/components/icons";
+import { formatDate, type PostMeta } from "@/lib/posts";
+export function PostCard({ post }: { post: PostMeta }) { return <article className="group border-t border-line py-6"><Link href={`/blog/${post.slug}`} className="grid gap-3 sm:grid-cols-[8rem_1fr_auto]"><time className="font-mono text-xs text-muted" dateTime={post.date}>{formatDate(post.date)}</time><div><h3 className="text-lg font-medium transition-colors group-hover:text-accent">{post.title}</h3><p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{post.description}</p><div className="mt-3 flex flex-wrap gap-2">{post.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div><ArrowUpRight className="mt-1 size-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></Link></article>; }

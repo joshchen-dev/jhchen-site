@@ -1,0 +1,4 @@
+import type { SVGProps } from "react";
+export function ArrowUpRight(props: SVGProps<SVGSVGElement>) { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}><path d="M5 15 15 5M7 5h8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>; }
+export function Sun(props: SVGProps<SVGSVGElement>) { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}><circle cx="10" cy="10" r="3.25" stroke="currentColor" strokeWidth="1.4"/><path d="M10 2v1.5M10 16.5V18M2 10h1.5M16.5 10H18M4.34 4.34 5.4 5.4M14.6 14.6l1.06 1.06M15.66 4.34 14.6 5.4M5.4 14.6l-1.06 1.06" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>; }
+export function Moon(props: SVGProps<SVGSVGElement>) { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}><path d="M16.7 12.25A6.8 6.8 0 0 1 7.75 3.3a6.8 6.8 0 1 0 8.95 8.95Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>; }

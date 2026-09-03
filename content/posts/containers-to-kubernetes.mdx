@@ -1,0 +1,19 @@
+---
+title: "From containers to Kubernetes: what changes"
+description: "The operational questions that appear when a container becomes a distributed workload."
+date: "2026-08-14"
+tags: ["Kubernetes", "Containers"]
+draft: false
+---
+
+> This is sample content. Replace it with your own project details before publishing.
+
+A working container is a useful artifact, but it is only the beginning of an operable service.
+
+## The deployment contract grows
+
+Kubernetes asks you to define health, resources, configuration, networking, and rollout behavior explicitly. Those constraints are valuable because they turn hidden assumptions into reviewable code.
+
+## Build feedback loops
+
+Start with readiness probes, structured logs, and a small set of service-level signals. Add complexity only when production evidence justifies it.
