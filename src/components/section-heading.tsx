@@ -1,1 +1,1 @@
-export function SectionHeading({ number, title, intro }: { number: string; title: string; intro?: string }) { return <div className="section-heading"><p className="font-mono text-xs text-accent">/{number}</p><div><h2>{title}</h2>{intro && <p>{intro}</p>}</div></div>; }
+export function SectionHeading({ number, title, intro }: { number: string; title: string; intro?: string }) { return <div className="section-heading"><p className="section-kicker">{number}</p><div><h2>{title}</h2>{intro && <p>{intro}</p>}</div></div>; }
