@@ -3,13 +3,14 @@ import { RichText } from "@/components/rich-text";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { education, jobs, service, skills } from "@/data/site";
+import { PageTransition } from "@/components/page-transition";
 
 export const metadata: Metadata = { title: "Work", description: "Experience, education, and skills.", alternates: { canonical: "/work/" } };
 
 function Span({ start, end }: { start: string; end: string }) { return <span className="when">{start} {end === "now" ? "→ now" : `– ${end}`}</span>; }
 
 export default function WorkPage() {
-  return <div className="page tech">
+  return <PageTransition><div className="page tech">
     <SiteHeader current="work" />
     <main id="main" className="tech-main">
       <h1>Work</h1>
@@ -33,5 +34,5 @@ export default function WorkPage() {
       </section>
     </main>
     <SiteFooter />
-  </div>;
+  </div></PageTransition>;
 }
