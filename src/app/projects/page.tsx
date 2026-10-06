@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { projects } from "@/data/site";
+import { PageTransition } from "@/components/page-transition";
 
 export const metadata: Metadata = { title: "Projects", description: "Personal and course projects outside work.", alternates: { canonical: "/projects/" } };
 
 export default function ProjectsPage() {
-  return <div className="page tech">
+  return <PageTransition><div className="page tech">
     <SiteHeader current="projects" />
     <main id="main" className="tech-main">
       <h1>Projects</h1>
@@ -18,5 +19,5 @@ export default function ProjectsPage() {
       </article>)}
     </main>
     <SiteFooter />
-  </div>;
+  </div></PageTransition>;
 }

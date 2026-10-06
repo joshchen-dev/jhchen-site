@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { formatDate, getAllPosts, getPost } from "@/lib/posts";
+import { PageTransition } from "@/components/page-transition";
 
 export const dynamicParams = false;
 // `output: "export"` needs at least one route; with nothing published, emit a draft slug, which renders as not found.
@@ -14,7 +15,7 @@ export default async function PostPage({ params }: PageProps<"/writing/[slug]">)
   const { slug } = await params;
   const post = getPost(slug);
   if (!post || post.meta.draft) notFound();
-  return <div className="page quiet">
+  return <PageTransition><div className="page quiet">
     <SiteHeader current="writing" />
     <main id="main" className="reading">
       <article>
@@ -23,5 +24,5 @@ export default async function PostPage({ params }: PageProps<"/writing/[slug]">)
       </article>
     </main>
     <SiteFooter />
-  </div>;
+  </div></PageTransition>;
 }
