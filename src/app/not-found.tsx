@@ -1,2 +1,2 @@
 import Link from "next/link";
-export default function NotFound() { return <main className="shell flex min-h-[70svh] flex-col items-start justify-center"><p className="font-mono text-sm text-accent">404 / route not found</p><h1 className="page-title mt-5">This page drifted<br/><span className="text-muted">out of service.</span></h1><Link className="button mt-8" href="/">Return home</Link></main>; }
+export default function NotFound() { return <main className="shell flex min-h-[70svh] flex-col items-start justify-center"><p className="meta">404</p><h1 className="page-title mt-3">This page drifted out of service.</h1><p className="mt-6"><Link href="/">Return home</Link></p></main>; }
