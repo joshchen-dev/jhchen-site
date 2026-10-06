@@ -1,2 +1,0 @@
-import { siteConfig } from "@/data/site";
-export function Footer() { return <footer id="contact" className="site-footer"><div className="shell"><p className="measure">The best way to reach me is email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p><div className="footer-links meta"><a href={siteConfig.socials.github} target="_blank" rel="noreferrer">GitHub</a><a href={siteConfig.socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a><span>© {new Date().getFullYear()} {siteConfig.name}</span></div></div></footer>; }
