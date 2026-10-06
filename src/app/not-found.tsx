@@ -1,2 +1,3 @@
 import Link from "next/link";
-export default function NotFound() { return <main className="shell flex min-h-[70svh] flex-col items-start justify-center"><p className="font-mono text-sm text-accent">404 / route not found</p><h1 className="page-title mt-5">This page drifted<br/><span className="text-muted">out of service.</span></h1><Link className="button mt-8" href="/">Return home</Link></main>; }
+import { SiteHeader } from "@/components/site-header";
+export default function NotFound() { return <div className="page quiet"><SiteHeader /><main id="main" className="reading"><h1>Page not found</h1><p>There’s nothing at this address. <Link href="/">Go to the homepage</Link>.</p></main></div>; }
