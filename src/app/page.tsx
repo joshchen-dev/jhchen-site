@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
 import { SectionHeading } from "@/components/section-heading";
-import { experiences, projects, siteConfig, skillGroups } from "@/data/site";
+import { education, experiences, languages, projects, siteConfig, skillGroups } from "@/data/site";
 import { getAllPosts } from "@/lib/posts";
 
 export default function Home() {
@@ -10,43 +10,45 @@ export default function Home() {
   return <main>
     <section className="shell hero">
       <div className="hero-copy">
-        <h1>I build systems teams can trust.</h1>
-        <p className="hero-intro measure">Hello, I&apos;m Josh. {siteConfig.intro}</p>
-        <p className="hero-links"><a href={`mailto:${siteConfig.email}`}>Start a conversation</a><a href="/josh-chen-resume.pdf" download>Download résumé</a></p>
+        <h1>I’m Jiahui, a software engineer in Tokyo.</h1>
+        <p className="hero-intro measure">At ORCA I build an internal React app, the backend services behind it, and the CI, monitoring, and deployment setup that keeps it running. I’m looking for my next role in DevOps, SRE, or backend engineering.</p>
+        <p className="hero-links"><a href={`mailto:${siteConfig.email}`}>Email me</a><a href="/josh-chen-resume.pdf" download>Download résumé</a><a href={siteConfig.socials.github} target="_blank" rel="noreferrer">GitHub</a></p>
       </div>
       <aside className="brief" aria-label="Current profile">
-        <p className="brief-status">{siteConfig.availability}.</p>
         <dl>
-          <div><dt>Focus</dt><dd>Infrastructure, reliability, backend</dd></div>
-          <div><dt>Based</dt><dd>Japan, open to worldwide teams</dd></div>
-          <div><dt>Approach</dt><dd>Automate the repeatable. Document the surprising.</dd></div>
+          <div><dt>Now</dt><dd>Software Engineer at ORCA</dd></div>
+          <div><dt>Based</dt><dd>Tokyo, Japan</dd></div>
+          <div><dt>Looking for</dt><dd>{siteConfig.availability}</dd></div>
+          <div><dt>Languages</dt><dd>{languages}</dd></div>
         </dl>
       </aside>
     </section>
 
-    <section id="work" className="section shell">
-      <SectionHeading title="Selected projects" intro="A few places where infrastructure decisions meet product outcomes." />
-      <ul className="project-list measure">{projects.map((project) => <li key={project.title}><h3><a href={project.href} target="_blank" rel="noreferrer">{project.title}</a></h3><p>{project.description}</p><p className="meta">{project.tags.join(", ")}</p></li>)}</ul>
-    </section>
-
     <section id="experience" className="section shell">
-      <SectionHeading title="Where I’ve contributed" intro="The clearest résumé is a record of ownership, decisions, and results." />
-      <div className="experience-list">{experiences.map((item, index) => <article key={`${item.role}-${index}`} className="experience-item"><p className="experience-date">{item.period}</p><div className="measure"><h3>{item.role}, <span className="experience-company">{item.company}</span></h3><p className="experience-summary">{item.summary}</p><ul>{item.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></div></article>)}</div>
+      <SectionHeading title="Experience" />
+      <div className="experience-list">{experiences.map((item) => <article key={`${item.company}-${item.period}`} className="experience-item"><p className="experience-date">{item.period}</p><div className="measure"><h3>{item.role}, <span className="experience-company">{item.company}</span></h3><p className="meta">{item.location}</p><p className="experience-summary">{item.summary}</p>{item.groups.map((group) => <div key={group.label} className="experience-group"><h4>{group.label}</h4><ul>{group.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul></div>)}</div></article>)}</div>
     </section>
 
-    <section className="section shell skills-section">
-      <SectionHeading title="How I can help" intro="Tools change. These are the engineering capabilities I bring to a team." />
+    <section id="projects" className="section shell">
+      <SectionHeading title="Projects" intro="Things I’ve built outside work, mostly to learn a tool properly." />
+      <ul className="project-list measure">{projects.map((project) => <li key={project.title}><h3><a href={project.href} target="_blank" rel="noreferrer">{project.title}</a></h3><p>{project.description}</p><p className="meta">{project.tags.join(", ")}{project.live && <> · <a href={project.live} target="_blank" rel="noreferrer">Live site</a></>}</p></li>)}</ul>
+    </section>
+
+    <section id="skills" className="section shell">
+      <SectionHeading title="Skills" />
       <dl className="skill-list">{skillGroups.map((group) => <div key={group.label}><dt>{group.label}</dt><dd>{group.items.join(", ")}</dd></div>)}</dl>
     </section>
 
-    <section className="section shell writing-section">
-      <SectionHeading title="Working notes" intro="Short observations from building, operating, and learning." />
+    {posts.length > 0 && <section id="notes" className="section shell writing-section">
+      <SectionHeading title="Notes" />
       <div className="post-list">{posts.map((post) => <PostCard key={post.slug} post={post} />)}</div>
-      <p className="mt-8"><Link href="/blog">Browse all notes</Link></p>
-    </section>
+      <p className="mt-8"><Link href="/blog">All notes</Link></p>
+    </section>}
 
-    <section id="about" className="section shell about-section">
-      <div className="measure"><h2>Engineering should make difficult things feel manageable.</h2><div className="about-copy"><p>My work sits where infrastructure, backend engineering, and developer experience meet. I care about clear ownership, useful automation, and software that behaves well when things go wrong.</p><p>Outside the ticket queue, I&apos;m usually learning a new system from first principles or writing down something I wish I had known sooner.</p><p className="placeholder-note">Before launch: replace this section with your own story and interests.</p></div></div>
+    <section id="about" className="section shell">
+      <SectionHeading title="About" />
+      <div className="about-copy measure"><p>I started out in physics, with a B.S. in Applied Physics from Tunghai University, and moved into computer science for my master’s at National Tsing Hua University. While there I served as a paper reviewer for NeurIPS 2022, and earlier I was a teaching assistant for calculus.</p><p>Since 2024 I’ve been in Tokyo at ORCA, where the work has ranged from the product UI down to the servers it runs on. I’m also working on my Japanese.</p></div>
+      <div className="experience-list">{education.map((item) => <article key={item.school} className="experience-item"><p className="experience-date">{item.period}</p><div className="measure"><h3>{item.degree}, <span className="experience-company">{item.school}</span></h3><p className="meta">{item.location}</p><p className="experience-summary">{item.note}</p></div></article>)}</div>
     </section>
   </main>;
 }

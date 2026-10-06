@@ -51,7 +51,6 @@ h1, h2, h3 { font-family: var(--font-source-serif), Georgia, serif; font-weight:
 .hero-intro { margin-top: 1.5rem; font-size: clamp(1.125rem, 2vw, 1.3rem); line-height: 1.55; }
 .hero-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 1.5rem; }
 .brief { margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1.25rem; font-size: .9375rem; }
-.brief-status { margin-bottom: .75rem; }
 .brief dl > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 1rem; padding-block: .3rem; }
 .brief dt { color: var(--muted); }
 
@@ -70,7 +69,9 @@ h1, h2, h3 { font-family: var(--font-source-serif), Georgia, serif; font-weight:
 .experience-item h3 { font-size: 1.2rem; line-height: 1.35; }
 .experience-company { font-style: italic; font-weight: 400; }
 .experience-summary { margin-top: .35rem; }
-.experience-item ul { margin-top: .6rem; padding-left: 1.1rem; list-style: disc; }
+.experience-group { margin-top: 1.1rem; }
+.experience-group h4 { color: var(--muted); font-size: .9375rem; font-weight: 500; }
+.experience-item ul { margin-top: .4rem; padding-left: 1.1rem; list-style: disc; }
 .experience-item li + li { margin-top: .25rem; }
 .experience-item li::marker { color: var(--muted); }
 
@@ -84,6 +85,7 @@ h1, h2, h3 { font-family: var(--font-source-serif), Georgia, serif; font-weight:
 .post-item > .meta { margin-top: 0; margin-bottom: .2rem; }
 
 .about-copy { display: grid; gap: 1.1rem; margin-top: 1.5rem; }
+.about-copy + .experience-list { margin-top: 3rem; }
 .placeholder-note { border-left: 2px solid var(--line); padding-left: 1rem; color: var(--muted); font-size: .9375rem; }
 
 .site-footer { border-top: 1px solid var(--line); padding-block: 2.5rem 3.5rem; }
@@ -107,5 +109,4 @@ h1, h2, h3 { font-family: var(--font-source-serif), Georgia, serif; font-weight:
 @media (min-width: 960px) {
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 4rem; align-items: end; }
   .brief { margin-top: 0; }
-  .about-section { display: grid; grid-template-columns: minmax(0, 1fr) 17rem; gap: 4rem; }
 }
