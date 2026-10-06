@@ -1,4 +1,4 @@
-# CHEN JIAHUI — Portfolio
+# Portfolio
 
 A static Next.js portfolio and MDX blog focused on DevOps, SRE, and backend engineering roles.
 
