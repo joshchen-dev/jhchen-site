@@ -1,16 +1,21 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { flushSync } from "react-dom";
+import { ActionIcon, Box, useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
 import { Moon, Sun } from "@/components/icons";
+
 export function ThemeToggle() {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { setColorScheme } = useMantineColorScheme();
+  const scheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
   useEffect(() => { if (buttonRef.current) buttonRef.current.dataset.hydrated = "true"; }, []);
-  function applyTheme(dark: boolean) { document.documentElement.classList.toggle("dark", dark); localStorage.setItem("theme", dark ? "dark" : "light"); }
   function toggleTheme() {
-    const next = !document.documentElement.classList.contains("dark");
+    const next = scheme === "dark" ? "light" : "dark";
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     // Cross-fade the whole page between themes where the View Transitions API exists.
-    if (typeof document.startViewTransition === "function" && !reduceMotion) { const root = document.documentElement; root.classList.add("theme-switching"); document.startViewTransition(() => applyTheme(next)).finished.finally(() => root.classList.remove("theme-switching")); }
-    else applyTheme(next);
+    if (typeof document.startViewTransition === "function" && !reduceMotion) document.startViewTransition(() => flushSync(() => setColorScheme(next)));
+    else setColorScheme(next);
   }
-  return <button ref={buttonRef} className="icon-button" type="button" onClick={toggleTheme} aria-label="Toggle color theme"><Moon className="icon icon-moon" /><Sun className="icon icon-sun" /></button>;
+  // Both icons render and CSS shows the right one, so server HTML matches the first client render whatever theme was saved.
+  return <ActionIcon ref={buttonRef} variant="default" size="lg" onClick={toggleTheme} aria-label="Toggle color theme"><Box component="span" lightHidden className="icon-wrap"><Sun className="icon" /></Box><Box component="span" darkHidden className="icon-wrap"><Moon className="icon" /></Box></ActionIcon>;
 }

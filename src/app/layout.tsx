@@ -1,12 +1,26 @@
-import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Literata } from "next/font/google";
-import { siteConfig } from "@/data/site";
+import "@mantine/core/styles.css";
 import "./globals.css";
-
-const literata = Literata({ subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], variable: "--font-literata" });
-const plexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-plex-sans" });
-const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono" });
+import type { Metadata } from "next";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { siteConfig } from "@/data/site";
+import { getAllPosts } from "@/lib/posts";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = { metadataBase: new URL(siteConfig.url), title: { default: `${siteConfig.name} — ${siteConfig.title}`, template: `%s — ${siteConfig.name}` }, description: siteConfig.description, authors: [{ name: siteConfig.name }], alternates: { canonical: "/" }, openGraph: { type: "website", locale: "en_US", url: siteConfig.url, siteName: siteConfig.name, title: `${siteConfig.name} — ${siteConfig.title}`, description: siteConfig.description } };
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d)}catch(e){}})()`;
-export default function RootLayout({ children }: LayoutProps<"/">) { return <html lang="en" suppressHydrationWarning className={`${literata.variable} ${plexSans.variable} ${plexMono.variable}`}><head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head><body><a href="#main" className="skip-link">Skip to content</a>{children}</body></html>; }
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  const showWriting = getAllPosts(false).length > 0;
+  return <html lang="en" {...mantineHtmlProps}>
+    <head><ColorSchemeScript defaultColorScheme="auto" /></head>
+    <body>
+      <Providers>
+        <a href="#main" className="skip-link">Skip to content</a>
+        <SiteHeader showWriting={showWriting} />
+        {children}
+        <SiteFooter />
+      </Providers>
+    </body>
+  </html>;
+}

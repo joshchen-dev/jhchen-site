@@ -1,38 +1,35 @@
 import type { Metadata } from "next";
-import { RichText } from "@/components/rich-text";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { education, jobs, service, skills } from "@/data/site";
+import { Badge, Card, Container, Divider, Group, List, ListItem, SimpleGrid, Stack, Text, Timeline, TimelineItem, Title } from "@mantine/core";
 import { PageTransition } from "@/components/page-transition";
+import { RichText } from "@/components/rich-text";
+import { education, jobs, service, skills } from "@/data/site";
 
 export const metadata: Metadata = { title: "Work", description: "Experience, education, and skills.", alternates: { canonical: "/work/" } };
 
-function Span({ start, end }: { start: string; end: string }) { return <span className="when">{start} {end === "now" ? "→ now" : `– ${end}`}</span>; }
+const span = (start: string, end: string) => `${start} – ${end}`;
+function EntryTitle({ title, when }: { title: string; when: string }) { return <Group justify="space-between" gap="xs" wrap="wrap"><Title order={2} fz="md" fw={700}>{title}</Title><Text size="sm" c="dimmed" className="tabular">{when}</Text></Group>; }
 
 export default function WorkPage() {
-  return <PageTransition><div className="page tech">
-    <SiteHeader current="work" />
-    <main id="main" className="tech-main">
-      <h1>Work</h1>
-
-      {jobs.map((job) => <article key={job.company} className="panel">
-        <header className="panel-head"><h2><b>{job.company}</b> · {job.role} · {job.location}</h2><Span start={job.start} end={job.end} /></header>
-        <p className="panel-row muted">{job.summary}</p>
-        {job.groups.map((group) => <div key={group.area} className="panel-row split"><h3 className="label">{group.area}</h3><ul>{group.items.map((item) => <li key={item}><RichText text={item} /></li>)}</ul></div>)}
-      </article>)}
-
-      <section aria-labelledby="education"><h2 id="education" className="section-title">Education</h2>
-        <div className="panel">{education.map((item) => <div key={item.school} className="panel-row stacked"><div className="row-head"><span><b>{item.degree}</b> · {item.school} · {item.location}</span><Span start={item.start} end={item.end} /></div><p className="muted">{item.note}</p></div>)}</div>
-      </section>
-
-      <section aria-labelledby="service"><h2 id="service" className="section-title">Service</h2>
-        <div className="panel">{service.map((item) => <div key={item.title} className="panel-row row-head"><span>{item.title}</span><span className="when">{item.when}</span></div>)}</div>
-      </section>
-
-      <section aria-labelledby="skills"><h2 id="skills" className="section-title">Skills</h2>
-        <dl className="panel">{skills.map((group) => <div key={group.label} className="panel-row split"><dt className="label">{group.label}</dt><dd className="words">{group.items.map((item) => <span key={item}>{item}</span>)}</dd></div>)}</dl>
-      </section>
-    </main>
-    <SiteFooter />
-  </div></PageTransition>;
+  return <PageTransition><Container component="main" id="main" size="md" py={48}>
+    <Stack gap={0} className="enter">
+      <Title order={1} mb="xl">Work</Title>
+      <Timeline active={0} bulletSize={20} lineWidth={2}>
+        {jobs.map((job) => <TimelineItem key={job.company} title={<EntryTitle title={`${job.role} · ${job.company}`} when={span(job.start, job.end)} />}>
+          <Text c="dimmed" size="sm" mt={4}>{job.location} · {job.summary}</Text>
+          <Stack gap="sm" mt="md">
+            {job.groups.map((group) => <Card key={group.area} withBorder padding="sm"><Text size="sm" fw={600} mb={6} tt="capitalize">{group.area}</Text><List size="sm" spacing={4}>{group.items.map((item) => <ListItem key={item}><RichText text={item} /></ListItem>)}</List></Card>)}
+          </Stack>
+        </TimelineItem>)}
+        {education.map((item) => <TimelineItem key={item.school} title={<EntryTitle title={`${item.degree} · ${item.school}`} when={span(item.start, item.end)} />}><Text c="dimmed" size="sm" mt={4}>{item.location} · {item.note}</Text></TimelineItem>)}
+      </Timeline>
+      <Divider my={40} />
+      <Title order={2} mb="md">Service</Title>
+      <Stack gap="xs">{service.map((item) => <Group key={item.title} justify="space-between"><Text>{item.title}</Text><Text size="sm" c="dimmed" className="tabular">{item.when}</Text></Group>)}</Stack>
+      <Divider my={40} />
+      <Title order={2} mb="md">Skills</Title>
+      <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
+        {skills.map((group) => <Card key={group.label} withBorder padding="md"><Text fw={600} mb="xs" tt="capitalize">{group.label}</Text><Group gap={6}>{group.items.map((item) => <Badge key={item} variant="light" color="gray" tt="none" size="lg" fz="sm" fw={500}>{item}</Badge>)}</Group></Card>)}
+      </SimpleGrid>
+    </Stack>
+  </Container></PageTransition>;
 }
