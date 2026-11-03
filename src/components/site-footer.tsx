@@ -1,2 +1,3 @@
+import { Anchor, Container, Group, Text } from "@mantine/core";
 import { siteConfig } from "@/data/site";
-export function SiteFooter() { return <footer className="site-footer"><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><a href={siteConfig.socials.github} target="_blank" rel="noreferrer">GitHub</a><a href={siteConfig.socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a></footer>; }
+export function SiteFooter() { return <Container component="footer" size="md" py="xl" className="site-footer"><Group gap="lg"><Anchor href={`mailto:${siteConfig.email}`} size="sm" c="dimmed">{siteConfig.email}</Anchor><Anchor href={siteConfig.socials.github} target="_blank" rel="noreferrer" size="sm" c="dimmed">GitHub</Anchor><Anchor href={siteConfig.socials.linkedin} target="_blank" rel="noreferrer" size="sm" c="dimmed">LinkedIn</Anchor><Text size="sm" c="dimmed">© {new Date().getFullYear()} {siteConfig.name}</Text></Group></Container>; }

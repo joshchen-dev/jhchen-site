@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { Container, Text, Title, Typography } from "@mantine/core";
 import { formatDate, getAllPosts, getPost } from "@/lib/posts";
 import { PageTransition } from "@/components/page-transition";
 
@@ -15,14 +14,11 @@ export default async function PostPage({ params }: PageProps<"/writing/[slug]">)
   const { slug } = await params;
   const post = getPost(slug);
   if (!post || post.meta.draft) notFound();
-  return <PageTransition><div className="page quiet">
-    <SiteHeader current="writing" />
-    <main id="main" className="reading">
-      <article>
-        <header className="post-head"><h1>{post.meta.title}</h1><p className="small"><time dateTime={post.meta.date}>{formatDate(post.meta.date)}</time></p></header>
-        <div className="prose"><MDXRemote source={post.content} /></div>
-      </article>
-    </main>
-    <SiteFooter />
-  </div></PageTransition>;
+  return <PageTransition><Container component="main" id="main" size="sm" py={48}>
+    <article className="enter">
+      <Title order={1}>{post.meta.title}</Title>
+      <Text size="sm" c="dimmed" mt="xs" mb="xl"><time dateTime={post.meta.date}>{formatDate(post.meta.date)}</time></Text>
+      <Typography><MDXRemote source={post.content} /></Typography>
+    </article>
+  </Container></PageTransition>;
 }

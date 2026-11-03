@@ -1,4 +1,4 @@
-import Link from "next/link";
-import { SiteHeader } from "@/components/site-header";
+import { Container, Stack, Text, Title } from "@mantine/core";
+import { NextAnchor } from "@/components/next-anchor";
 import { PageTransition } from "@/components/page-transition";
-export default function NotFound() { return <PageTransition><div className="page quiet"><SiteHeader /><main id="main" className="reading"><h1>Page not found</h1><p>There’s nothing at this address. <Link href="/">Go to the homepage</Link>.</p></main></div></PageTransition>; }
+export default function NotFound() { return <PageTransition><Container component="main" id="main" size="sm" py={64}><Stack gap="sm" className="enter"><Title order={1}>Page not found</Title><Text>There’s nothing at this address. <NextAnchor href="/">Go to the homepage</NextAnchor>.</Text></Stack></Container></PageTransition>; }

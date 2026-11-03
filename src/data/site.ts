@@ -17,7 +17,7 @@ export const jobs = [
     company: "ORCA Co., Ltd.",
     role: "Software Engineer",
     location: "Tokyo",
-    start: "2024-03",
+    start: "Mar 2024",
     end: "now",
     summary: "Internal SaaS tools, cloud services, and the mail service ORCA provides to business clients.",
     groups: [
