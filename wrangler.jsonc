@@ -1,0 +1,11 @@
+// Cloudflare Workers config: serves the static export in ./out (built by `npm run build`) with no server code.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "jhchen-site",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    // Unknown paths get out/404.html with a 404 status instead of an empty response.
+    "not_found_handling": "404-page"
+  }
+}
