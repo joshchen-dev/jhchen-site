@@ -1,14 +1,12 @@
 export const siteConfig = {
-  name: "Jiahui Chen",
+  name: "CHEN JIAHUI",
   title: "Software Engineer in Tokyo",
-  description: "Jiahui Chen is a software engineer in Tokyo working across product frontends, backend services, and the infrastructure they run on.",
-  email: "josh@joshchen.dev",
-  url: "https://joshchen.dev",
+  description: "CHEN JIAHUI is a software engineer in Tokyo working across product frontends, backend services, and the infrastructure they run on.",
+  email: "josh@jhchen.dev",
+  url: "https://jhchen.dev",
   resume: "/josh-chen-resume.pdf",
   socials: {
     github: "https://github.com/joshchen-dev",
-    // TODO: Replace with your public LinkedIn profile before launch.
-    linkedin: "https://www.linkedin.com/in/replace-me",
   },
 };
 
