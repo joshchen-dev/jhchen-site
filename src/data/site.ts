@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "Software Engineer in Tokyo",
   description: "CHEN JIAHUI is a software engineer in Tokyo working across product frontends, backend services, and the infrastructure they run on.",
   email: "josh@jhchen.dev",
-  url: "https://joshchen.dev",
+  url: "https://jhchen.dev",
   resume: "/josh-chen-resume.pdf",
   socials: {
     github: "https://github.com/joshchen-dev",
