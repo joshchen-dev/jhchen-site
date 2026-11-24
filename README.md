@@ -25,7 +25,7 @@ The production build is exported to `out/`.
 - Edit profile, experience, education, skills, projects, and links in `src/data/site.ts`.
 - Add posts in `content/posts/*.mdx`; copy `draft-template.mdx` and set `draft: false` when ready. Posts appear under `/writing/`, and the Writing link shows up once at least one post is published.
 - Replace `public/josh-chen-resume.pdf` with the final résumé, keeping the filename unchanged.
-- Replace the placeholder LinkedIn URL in `src/data/site.ts` and the résumé stub at `public/josh-chen-resume.pdf` before publishing.
+- Replace the résumé stub at `public/josh-chen-resume.pdf` before publishing.
 
 ## Cloudflare Pages
 
