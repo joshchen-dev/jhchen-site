@@ -9,10 +9,9 @@ export default function Home() {
     <Stack gap="lg" className="enter">
       <Badge variant="default" size="xl" tt="none" fz="sm" fw={500} w="fit-content">Open to DevOps, SRE, and backend roles</Badge>
       <Title order={1} fz={{ base: 34, sm: 44 }} lh={1.15}>I’m Jiahui, a software engineer in Tokyo.</Title>
-      <Text size="lg" c="dimmed">I build product frontends, the backend services behind them, and the infrastructure they run on. Currently at ORCA. Before that, a master’s in computer science at National Tsing Hua University.</Text>
+      <Text size="lg" c="dimmed">I build backend services in Go and the infrastructure they run on: Kubernetes, Terraform, and observability with Prometheus, Loki, and Grafana. Currently at ORCA. CKA and AWS Solutions Architect certified.</Text>
       <Group>
         <Button component="a" href={`mailto:${siteConfig.email}`}>Email me</Button>
-        <Button component="a" href={siteConfig.resume} variant="default">Résumé</Button>
         <Button component="a" href={siteConfig.socials.github} target="_blank" rel="noreferrer" variant="subtle">GitHub</Button>
       </Group>
       <Paper withBorder p="md" mt="md">
