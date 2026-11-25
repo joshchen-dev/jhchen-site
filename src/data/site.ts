@@ -48,6 +48,12 @@ export const certifications = [
   { title: "AWS Certified Solutions Architect – Associate", when: "Nov 2026" },
 ];
 
+export const languages = [
+  { name: "Chinese", level: "Native", note: "" },
+  { name: "English", level: "Business", note: "TOEIC 850 (Apr 2016)" },
+  { name: "Japanese", level: "Daily conversation", note: "BJT 409, JLPT N2 equivalent (Nov 2026)" },
+];
+
 export const service = [
   { title: "Paper reviewer, NeurIPS 2022", when: "2022" },
   { title: "Teaching assistant, Calculus, Tunghai University", when: "2017 – 2018" },
@@ -63,21 +69,20 @@ export const skills = [
   { label: "testing & CI/CD", items: ["Go testing", "envtest", "Playwright", "GitHub Actions", "AWS CodeBuild"] },
   { label: "cloud", items: ["AWS", "GCP", "Cloudflare"] },
   { label: "agentic engineering", items: ["Claude", "Codex"] },
-  { label: "spoken", items: ["Chinese (native)", "English (TOEIC 850)", "Japanese (BJT 409)"] },
 ];
 
 export const projects = [
   {
     title: "Riffle",
     tagline: "Kubernetes log-alerting operator and CLI",
-    description: "Teams declare log rules as a LogAlert custom resource. A node agent reads pod logs, and the operator turns matches into Prometheus metrics, Kubernetes Events, and Slack-compatible webhooks (p50 log-to-webhook latency 0.5 s), archiving redacted matches to S3. One filter engine is shared by the operator, agent, and CLI, and the interactive `riffle tail -i` view turns an ad-hoc filter into LogAlert YAML for review. Deployed with Terraform, Ansible, and an Argo CD app-of-apps.",
+    description: "Declare log rules as a Kubernetes resource and get alerts as Prometheus metrics, Events, and webhooks, with about 0.5 s from log line to alert. The `riffle tail -i` CLI turns an ad-hoc filter into a reviewable rule.",
     stack: ["Go", "kubebuilder", "Kubernetes", "Prometheus", "Terraform", "Argo CD"],
     links: [{ label: "site", href: "https://riffle.jhchen.dev" }],
   },
   {
     title: "Raidy",
     tagline: "Scheduling web app with a Discord bot",
-    description: "A single Go service runs the Discord bot, REST API, scheduler, and web console on PostgreSQL with embedded, versioned migrations and Discord OAuth2 login. The React front end handles timezone-aware scheduling and live-updating Discord posts, with Playwright end-to-end tests. Tagged releases publish multi-arch images to GHCR, and it deploys to Kubernetes with Kustomize.",
+    description: "One Go service runs a Discord bot, REST API, scheduler, and React web console for timezone-aware event scheduling, with Discord login and live-updating posts.",
     stack: ["Go", "React", "TypeScript", "PostgreSQL", "Discord", "Kubernetes"],
     links: [{ label: "site", href: "https://raidy.jhchen.dev" }],
   },

@@ -1,4 +1,4 @@
-import { Badge, Button, Container, Group, Paper, SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { Button, Container, Group, Paper, SimpleGrid, Stack, Text, Title } from "@mantine/core";
 import { PageTransition } from "@/components/page-transition";
 import { siteConfig } from "@/data/site";
 
@@ -7,7 +7,6 @@ const facts = [["Now", "Software Engineer, ORCA"], ["Based", "Tokyo, Japan"], ["
 export default function Home() {
   return <PageTransition><Container component="main" id="main" size="sm" py={64}>
     <Stack gap="lg" className="enter">
-      <Badge variant="default" size="xl" tt="none" fz="sm" fw={500} w="fit-content">Open to DevOps, SRE, and backend roles</Badge>
       <Title order={1} fz={{ base: 34, sm: 44 }} lh={1.15}>I’m Jiahui, a software engineer in Tokyo.</Title>
       <Text size="lg" c="dimmed">I build backend services in Go and the infrastructure they run on: Kubernetes, Terraform, and observability with Prometheus, Loki, and Grafana. Currently at ORCA. CKA and AWS Solutions Architect certified.</Text>
       <Group>

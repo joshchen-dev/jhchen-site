@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import { Badge, Card, Container, Divider, Group, List, ListItem, SimpleGrid, Stack, Text, Timeline, TimelineItem, Title } from "@mantine/core";
 import { PageTransition } from "@/components/page-transition";
 import { RichText } from "@/components/rich-text";
-import { certifications, education, jobs, service, skills } from "@/data/site";
+import { certifications, education, jobs, languages, service, skills } from "@/data/site";
 
-export const metadata: Metadata = { title: "Work", description: "Experience, education, certifications, and skills.", alternates: { canonical: "/work/" } };
+export const metadata: Metadata = { title: "Work", description: "Experience, education, certifications, languages, and skills.", alternates: { canonical: "/work/" } };
 
 const span = (start: string, end: string) => `${start} – ${end}`;
-function EntryTitle({ title, when }: { title: string; when: string }) { return <Group justify="space-between" gap="xs" wrap="wrap"><Title order={2} fz="md" fw={700}>{title}</Title><Text size="sm" c="dimmed" className="tabular">{when}</Text></Group>; }
+function EntryTitle({ title, when }: { title: string; when: string }) { return <Group justify="space-between" gap="xs" wrap="wrap"><Title order={3} fz="md" fw={700}>{title}</Title><Text size="sm" c="dimmed" className="tabular">{when}</Text></Group>; }
 
 export default function WorkPage() {
   return <PageTransition><Container component="main" id="main" size="md" py={48}>
     <Stack gap={0} className="enter">
       <Title order={1} mb="xl">Work</Title>
+      <Title order={2} mb="md">Experience</Title>
       <Timeline active={0} bulletSize={20} lineWidth={2}>
         {jobs.map((job) => <TimelineItem key={job.company} title={<EntryTitle title={`${job.role} · ${job.company}`} when={span(job.start, job.end)} />}>
           <Text c="dimmed" size="sm" mt={4}>{job.location} · {job.summary}</Text>
@@ -20,11 +21,16 @@ export default function WorkPage() {
             {job.groups.map((group) => <Card key={group.area} withBorder padding="sm"><Text size="sm" fw={600} mb={6} tt="capitalize">{group.area}</Text><List size="sm" spacing={4}>{group.items.map((item) => <ListItem key={item}><RichText text={item} /></ListItem>)}</List></Card>)}
           </Stack>
         </TimelineItem>)}
-        {education.map((item) => <TimelineItem key={item.school} title={<EntryTitle title={`${item.degree} · ${item.school}`} when={span(item.start, item.end)} />}><Text c="dimmed" size="sm" mt={4}>{item.location} · {item.note}</Text></TimelineItem>)}
       </Timeline>
+      <Divider my={40} />
+      <Title order={2} mb="md">Education</Title>
+      <Stack gap="md">{education.map((item) => <div key={item.school}><EntryTitle title={`${item.degree} · ${item.school}`} when={span(item.start, item.end)} /><Text c="dimmed" size="sm" mt={4}>{item.location} · {item.note}</Text></div>)}</Stack>
       <Divider my={40} />
       <Title order={2} mb="md">Certifications</Title>
       <Stack gap="xs">{certifications.map((item) => <Group key={item.title} justify="space-between"><Text>{item.title}</Text><Text size="sm" c="dimmed" className="tabular">{item.when}</Text></Group>)}</Stack>
+      <Divider my={40} />
+      <Title order={2} mb="md">Languages</Title>
+      <Stack gap="xs">{languages.map((item) => <Group key={item.name} justify="space-between" wrap="wrap" gap="xs"><Text><b>{item.name}</b> · {item.level}</Text>{item.note && <Text size="sm" c="dimmed">{item.note}</Text>}</Group>)}</Stack>
       <Divider my={40} />
       <Title order={2} mb="md">Service & honors</Title>
       <Stack gap="xs">{service.map((item) => <Group key={item.title} justify="space-between"><Text>{item.title}</Text>{item.when && <Text size="sm" c="dimmed" className="tabular">{item.when}</Text>}</Group>)}</Stack>
