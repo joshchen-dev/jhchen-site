@@ -26,3 +26,4 @@ body { background: var(--mantine-color-body); }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 .tabular { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.inline-code { font-family: var(--mantine-font-family-monospace); font-size: .9em; white-space: nowrap; }

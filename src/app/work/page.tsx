@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Badge, Card, Container, Divider, Group, List, ListItem, SimpleGrid, Stack, Text, Timeline, TimelineItem, Title } from "@mantine/core";
 import { PageTransition } from "@/components/page-transition";
 import { RichText } from "@/components/rich-text";
-import { education, jobs, service, skills } from "@/data/site";
+import { certifications, education, jobs, service, skills } from "@/data/site";
 
-export const metadata: Metadata = { title: "Work", description: "Experience, education, and skills.", alternates: { canonical: "/work/" } };
+export const metadata: Metadata = { title: "Work", description: "Experience, education, certifications, and skills.", alternates: { canonical: "/work/" } };
 
 const span = (start: string, end: string) => `${start} – ${end}`;
 function EntryTitle({ title, when }: { title: string; when: string }) { return <Group justify="space-between" gap="xs" wrap="wrap"><Title order={2} fz="md" fw={700}>{title}</Title><Text size="sm" c="dimmed" className="tabular">{when}</Text></Group>; }
@@ -23,8 +23,11 @@ export default function WorkPage() {
         {education.map((item) => <TimelineItem key={item.school} title={<EntryTitle title={`${item.degree} · ${item.school}`} when={span(item.start, item.end)} />}><Text c="dimmed" size="sm" mt={4}>{item.location} · {item.note}</Text></TimelineItem>)}
       </Timeline>
       <Divider my={40} />
-      <Title order={2} mb="md">Service</Title>
-      <Stack gap="xs">{service.map((item) => <Group key={item.title} justify="space-between"><Text>{item.title}</Text><Text size="sm" c="dimmed" className="tabular">{item.when}</Text></Group>)}</Stack>
+      <Title order={2} mb="md">Certifications</Title>
+      <Stack gap="xs">{certifications.map((item) => <Group key={item.title} justify="space-between"><Text>{item.title}</Text><Text size="sm" c="dimmed" className="tabular">{item.when}</Text></Group>)}</Stack>
+      <Divider my={40} />
+      <Title order={2} mb="md">Service & honors</Title>
+      <Stack gap="xs">{service.map((item) => <Group key={item.title} justify="space-between"><Text>{item.title}</Text>{item.when && <Text size="sm" c="dimmed" className="tabular">{item.when}</Text>}</Group>)}</Stack>
       <Divider my={40} />
       <Title order={2} mb="md">Skills</Title>
       <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }}>
