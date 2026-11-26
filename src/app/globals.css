@@ -2,6 +2,11 @@
 /* Reserve the scrollbar's width on every page, so the centred header doesn't jump when a long page (Work) adds a scrollbar. */
 html { scrollbar-gutter: stable; }
 body { background: var(--mantine-color-body); }
+/* Fill the window height so the footer sits at the bottom on short pages (Home, Projects) and follows the content on long ones.
+   Main and footer centre themselves with auto margins, so they need an explicit width inside this column. */
+body { min-height: 100dvh; display: flex; flex-direction: column; }
+body > main { width: 100%; }
+.site-footer { width: 100%; margin-top: auto; }
 .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 300; padding: .6rem 1rem; border-radius: var(--mantine-radius-md); background: var(--mantine-color-text); color: var(--mantine-color-body); }
 .skip-link:focus { top: 1rem; }
 .site-header { position: relative; z-index: 2; border-bottom: 1px solid var(--mantine-color-default-border); }
