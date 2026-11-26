@@ -1,4 +1,6 @@
 /* Mantine supplies the components and colours; this file only adds the skip link, the header rule and motion. */
+/* Reserve the scrollbar's width on every page, so the centred header doesn't jump when a long page (Work) adds a scrollbar. */
+html { scrollbar-gutter: stable; }
 body { background: var(--mantine-color-body); }
 .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 300; padding: .6rem 1rem; border-radius: var(--mantine-radius-md); background: var(--mantine-color-text); color: var(--mantine-color-body); }
 .skip-link:focus { top: 1rem; }
